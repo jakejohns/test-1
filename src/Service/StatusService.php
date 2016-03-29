@@ -2,10 +2,15 @@
 
 namespace Service;
 
+use Aura\Payload_Interface\PayloadStatus as Status;
+
 class StatusService extends Service
 {
-    public function getStatus()
+    public function __invoke()
     {
-        echo 'hi';
+        return $this->payloadFactory->newInstance()
+            ->setStatus(Status::SUCCESS)
+            ->setOutput('Dork');
     }
+
 }
