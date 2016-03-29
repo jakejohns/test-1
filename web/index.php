@@ -18,9 +18,7 @@ Dotenv::load([
 ]);
 
 $boot = new Boot();
-$adr = $boot->adr();
-
-require '../src/di.php';
+$adr = $boot->adr(['Config']);
 
 /**
  * Middleware
@@ -29,11 +27,6 @@ $adr->middle(new ResponseSender());
 $adr->middle(new ExceptionHandler(new Response()));
 $adr->middle('Radar\Adr\Handler\RoutingHandler');
 $adr->middle('Radar\Adr\Handler\ActionHandler');
-
-/**
- * Routes
- */
-require '../src/router.php';
 
 
 /**
